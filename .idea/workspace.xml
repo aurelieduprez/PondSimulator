@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d63f8a29-ae8f-478d-92b6-bd2a1a50a877" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/company/entities/Duck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/entities/IPondEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/entities/Lilypad.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/entities/Rock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2JAVA/com/company/GameLauncher.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2JAVA/com/company/GameLauncher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2JAVA/com/company/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2JAVA/com/company/GamePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2JAVA/com/company/Window.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2JAVA/com/company/Window.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/GameLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/GameLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/pond/PondManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/pond/PondManager.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="2JAVA" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaFXApplication" />
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1aRYbtR0Oz7ryIti6GvFOp8g8gU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.build.tools" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.company" />
+      <recent name="entities" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.company.pond" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="GameLauncher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.GameLauncher" />
+      <module name="2JAVA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.GameLauncher" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",SHOW_FIELDS,SHOW_NON_PUBLIC" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d63f8a29-ae8f-478d-92b6-bd2a1a50a877" name="Default Changelist" comment="" />
+      <created>1586699948299</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586699948299</updated>
+      <workItem from="1586961707950" duration="2223000" />
+      <workItem from="1586964452232" duration="19314000" />
+      <workItem from="1587112858056" duration="4244000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="178" key="#Inspections" timestamp="1586879351272">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" key="#Inspections/1920.-354.2560.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586879351272" />
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586701051131">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.-354.2560.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586701051131" />
+    <state x="714" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587056801435">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="714" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1587056801435" />
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1587059091312">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1587059091312" />
+    <state x="808" y="408" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1586961807580">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="808" y="408" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586961807580" />
+    <state x="756" y="404" width="408" height="238" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1587044855828">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="756" y="404" width="408" height="238" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1587044855828" />
+    <state x="756" y="425" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1587050735440">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="756" y="425" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1040@0.0.1920.1040" timestamp="1587050735440" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586879028936">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.-354.2560.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586879028936" />
+    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1587050776696">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1587050776696" />
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1586964355793">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1586964355793" />
+    <state width="1877" height="273" key="GridCell.Tab.0.bottom" timestamp="1587130332737">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="273" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1587130332737" />
+    <state width="1876" height="282" key="GridCell.Tab.0.bottom/1920.-354.2560.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586960739186" />
+    <state width="1877" height="273" key="GridCell.Tab.0.center" timestamp="1587130332737">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="273" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1587130332737" />
+    <state width="1876" height="282" key="GridCell.Tab.0.center/1920.-354.2560.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586960739186" />
+    <state width="1877" height="273" key="GridCell.Tab.0.left" timestamp="1587130332737">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="273" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1587130332737" />
+    <state width="1876" height="282" key="GridCell.Tab.0.left/1920.-354.2560.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586960739186" />
+    <state width="1877" height="273" key="GridCell.Tab.0.right" timestamp="1587130332737">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="273" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1587130332737" />
+    <state width="1876" height="282" key="GridCell.Tab.0.right/1920.-354.2560.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586960739186" />
+    <state width="1877" height="344" key="GridCell.Tab.1.bottom" timestamp="1587061514487">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="344" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1587061514487" />
+    <state width="1877" height="344" key="GridCell.Tab.1.center" timestamp="1587061514486">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="344" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1587061514486" />
+    <state width="1877" height="344" key="GridCell.Tab.1.left" timestamp="1587061514486">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="344" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1587061514486" />
+    <state width="1877" height="344" key="GridCell.Tab.1.right" timestamp="1587061514486">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="344" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1587061514486" />
+    <state x="461" y="162" key="SettingsEditor" timestamp="1587055499673">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1587055499673" />
+    <state x="461" y="162" key="SettingsEditor/1920.-354.2560.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586788048717" />
+    <state x="92" y="92" width="1736" height="856" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1587060102264">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1587060102264" />
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1587112857162">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1587112857162" />
+    <state x="656" y="118" width="607" height="804" key="find.popup" timestamp="1586867901119">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="118" width="607" height="804" key="find.popup/1920.-354.2560.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586867901119" />
+    <state x="342" y="140" key="new project wizard" timestamp="1586964359820">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="342" y="140" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1586964359820" />
+    <state x="702" y="138" key="refactoring.ChangeSignatureDialog" timestamp="1587061685451">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="702" y="138" key="refactoring.ChangeSignatureDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1587061685451" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1587059902227">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1587059902227" />
+  </component>
+</project>
