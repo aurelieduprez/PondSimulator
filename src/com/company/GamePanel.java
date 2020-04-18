@@ -16,7 +16,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
     private final int DELAY = 10;
 
-    private PondManager pm;             // POUR LIER UN TRUC FAUT LE DECLARER ICI ET DANS INIT
+    private PondManager pm;
 
     public static int getWindowHeight() {
         return height;

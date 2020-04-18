@@ -3,6 +3,9 @@ package com.company.pond;
 import com.company.GamePanel;
 import com.company.entities.Duck;
 import com.company.entities.IPondEntity;
+import com.company.entities.Lilypad;
+import com.company.entities.Rock;
+
 import java.util.concurrent.ThreadLocalRandom;
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -102,29 +105,57 @@ public class PondManager {
     }
 */
     public void spawnDuck() {
-        int randx = ThreadLocalRandom.current().nextInt(0, 1200);
+        int randx = ThreadLocalRandom.current().nextInt(0, 1280);
         System.out.println(randx);
-        int randy = ThreadLocalRandom.current().nextInt(0, 820);
+        int randy = ThreadLocalRandom.current().nextInt(0, 800);
         System.out.println(randy);
         entities.add(new Duck(randx, randy));
 
     }
 
-    // TODO: other spawns
+    public void spawnLilypad() {
+        int randx = ThreadLocalRandom.current().nextInt(0, 1280);
+        System.out.println(randx);
+        int randy = ThreadLocalRandom.current().nextInt(0, 800);
+        System.out.println(randy);
+        entities.add(new Lilypad(randx, randy));
 
+    }
+
+    public void spawnRock() {
+        int randx = ThreadLocalRandom.current().nextInt(0, 1280);
+        System.out.println(randx);
+        int randy = ThreadLocalRandom.current().nextInt(0, 800);
+        System.out.println(randy);
+        entities.add(new Rock (randx, randy));
+
+    }
+
+
+    // TODO: other spawns
+    private int nbLilypads = 0;
+    private int nbRocks = 0;
+    private int nbDucks = 0;
     public void update() {
         //entities.forEach(IPondEntity::update);
         for (IPondEntity entity : entities) {
             entity.update();
         }
 
-        // Logic pour instancier un nouveau duck randomly
-        // TODO
-
-        if (!debugSpawned) {
+        if (nbDucks <= 15) {
             spawnDuck();
-            debugSpawned = true;
+            nbDucks += 1;
         }
+        if (nbRocks < 5) {
+            spawnRock();
+            nbRocks += 1;
+        }
+        if (nbLilypads <= 10) {
+            spawnLilypad();
+            nbLilypads += 1;
+        }
+
+
     }
 
 
