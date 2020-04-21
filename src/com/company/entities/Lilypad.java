@@ -15,8 +15,8 @@ public class Lilypad implements IPondEntity {
     public Lilypad(int x, int y) {
         this.x = x;
         this.y = y;
-        this.width = 50;
-        this.height = 50;
+        this.width = 70;
+        this.height = 70;
         this.color = new Color(51,153,0);
     }
 

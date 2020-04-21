@@ -20,8 +20,8 @@ public class Duck implements IPondEntity {
     public Duck(int x, int y) {
         this.x = x;
         this.y = y;
-        this.width = this.height = 50;
-        this.level = 1;
+        this.width = this.height = 70;
+        this.level = 5;
         this.radius = 20;
 
     }
@@ -30,7 +30,7 @@ public class Duck implements IPondEntity {
     public void update() {
         this.y = this.y - getMoveSpeed(this.level);
         if (this.y < 1){
-            this.y = this.y + 10;
+
             System.out.println(this.y);
         }
     }
@@ -53,7 +53,7 @@ public class Duck implements IPondEntity {
     public void render(Graphics2D g) {
         PondManager pm = PondManager.getSingleton();
         Image duckImg = null;
-        int duckSize = level == 1 ? 40 : 80;
+        int duckSize = level == 1 ? 70 : 100;
         Color color;
         if (level <= 3) { // baby duck
             color = new Color(255,255,0);
