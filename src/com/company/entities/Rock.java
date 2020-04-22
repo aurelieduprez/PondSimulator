@@ -1,8 +1,10 @@
 package com.company.entities;
 
 import com.company.pond.PondManager;
+import com.company.tools.Vector2D;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.io.IOException;
 
 public class Rock implements IPondEntity {
@@ -33,5 +35,15 @@ public class Rock implements IPondEntity {
         Image RockImg = null;
         RockImg = pm.getRockImg();
         g.drawImage(RockImg, this.x, this.y, this.width, this.height, null);
+    }
+
+    @Override
+    public Vector2D getPosition() {
+        return new Vector2D(this.x, this.y);
+    }
+
+    @Override
+    public Vector2D getSize() {
+        return new Vector2D(this.width, this.height);
     }
 }

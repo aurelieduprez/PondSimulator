@@ -1,9 +1,11 @@
 package com.company.entities;
 
 import com.company.pond.PondManager;
+import com.company.tools.Vector2D;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Point2D;
 
 public class Lilypad implements IPondEntity {
     private int x;
@@ -38,5 +40,15 @@ public class Lilypad implements IPondEntity {
         Ellipse2D.Double circle = new Ellipse2D.Double(x, y, 50, 50);
         g.fill(circle); //lily pad = rond coloré
         g.draw(circle);*/
+    }
+
+    @Override
+    public Vector2D getPosition() {
+        return new Vector2D(this.x, this.y);
+    }
+
+    @Override
+    public Vector2D getSize() {
+        return new Vector2D(this.width, this.height);
     }
 }

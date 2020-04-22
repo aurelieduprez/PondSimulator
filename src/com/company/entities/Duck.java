@@ -3,35 +3,57 @@ package com.company.entities;
 import com.company.Window;
 import com.company.pond.PondManager;
 import com.company.GamePanel;
+import com.company.tools.GraphicUtils;
+import com.company.tools.MathUtils;
+import com.company.tools.Vector2D;
+
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
-
-
+import java.awt.geom.Point2D;
+import java.awt.geom.Point2D.Double;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 
 public class Duck implements IPondEntity {
-    private int x;
-    private int y;
+    private double x;
+    private double y;
     private int width;
     private int height;
-    private int level;
-    private int radius;
+    private double rotation;
 
+    private int level;
+    private BufferedImage image;
 
     public Duck(int x, int y) {
         this.x = x;
         this.y = y;
-        this.width = this.height = 70;
-        this.level = 5;
-        this.radius = 20;
-
+        this.width = this.height = 40;
+        this.level = 1;
+        this.rotation = 45;
+        this.image = PondManager.getSingleton().getDuckImg1();
     }
 
     @Override
     public void update() {
-        this.y = this.y - getMoveSpeed(this.level);
-        if (this.y < 1){
+        this.forward();
+    }
 
-            System.out.println(this.y);
+    public void forward() {
+        Double translated = MathUtils.translate2D(this.x, this.y, this.rotation, getMoveSpeed(this.level));
+        this.x = translated.x;
+        this.y = translated.y;
+    }
+
+    public void levelUp() {
+        if (level >= 10) return;
+
+        level += 1;
+
+        if (level == 3) { // Grown up to normal
+            this.width = this.height = 80;
+        } else if (level == 10) { // Becomes chief
+            this.image = PondManager.getSingleton().getDuckImg2();
         }
     }
 
@@ -52,8 +74,7 @@ public class Duck implements IPondEntity {
     @Override
     public void render(Graphics2D g) {
         PondManager pm = PondManager.getSingleton();
-        Image duckImg = null;
-        int duckSize = level == 1 ? 70 : 100;
+        BufferedImage duckImg = null;
         Color color;
         if (level <= 3) { // baby duck
             color = new Color(255,255,0);
@@ -68,6 +89,26 @@ public class Duck implements IPondEntity {
             duckImg = pm.getDuckImg2();
         }
 
-        g.drawImage(duckImg, this.x, this.y, duckSize, duckSize, null);
+        g.drawImage(GraphicUtils.rotateImageByDegrees(duckImg, rotation), (int)this.x, (int)this.y, width, height, null);
+    }
+
+    @Override
+    public Vector2D getPosition() {
+        return new Vector2D(this.x, this.y);
+    }
+
+    @Override
+    public Vector2D getSize() {
+        return new Vector2D(this.width, this.height);
+    }
+
+    public void setRotation(double rot) {
+        if (rot < 0) rot += 360;
+        this.rotation = rot;
+    }
+
+    public double getRotation() {
+        return this.rotation;
     }
 }
+
