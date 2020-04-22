@@ -79,7 +79,6 @@ public class PondManager {
     }
 
 
-    // TODO:manage rotations
     private int nbLilypads = 0;
     private int nbRocks = 0;
     private int nbDucks = 0;
@@ -137,7 +136,7 @@ public class PondManager {
 
         }
 
-        if (nbDucks < 1) {
+        if (nbDucks < 10) {
             spawnDuck();
             nbDucks += 1;
         }

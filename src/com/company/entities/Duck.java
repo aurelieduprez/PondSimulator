@@ -28,7 +28,7 @@ public class Duck implements IPondEntity {
     public Duck(int x, int y) {
         this.x = x;
         this.y = y;
-        this.width = this.height = 40;
+        this.width = this.height = 80;
         this.level = 1;
         this.rotation = 45;
         this.image = PondManager.getSingleton().getDuckImg1();
@@ -50,8 +50,8 @@ public class Duck implements IPondEntity {
 
         level += 1;
 
-        if (level == 3) { // Grown up to normal
-            this.width = this.height = 80;
+        if (level >= 3) { // Grown up to normal
+            this.width = this.height = 90;
         } else if (level == 10) { // Becomes chief
             this.image = PondManager.getSingleton().getDuckImg2();
         }

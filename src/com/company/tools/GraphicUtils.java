@@ -25,8 +25,8 @@ public class GraphicUtils {
         at.rotate(rads, x, y);
         g2d.setTransform(at);
         g2d.drawImage(img, 0, 0, null);
-        g2d.setColor(Color.RED);
-        g2d.drawRect(0, 0, newWidth - 1, newHeight - 1);
+        //g2d.setColor(Color.RED);
+        //g2d.drawRect(0, 0, newWidth - 1, newHeight - 1);
         g2d.dispose();
 
         return rotated;
