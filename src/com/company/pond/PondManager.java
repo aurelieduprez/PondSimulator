@@ -8,7 +8,11 @@ import com.company.entities.Rock;
 import com.company.tools.MathUtils;
 import com.company.tools.Vector2D;
 
+import java.applet.AudioClip;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -30,7 +34,7 @@ public class PondManager {
     private BufferedImage lilypadImg;
 
     // TODO: A supprimer
-    boolean debugSpawned = false;
+    //boolean debugSpawned = false;
 
     private static PondManager _instance = null;
 
@@ -48,32 +52,55 @@ public class PondManager {
         this.duckImg1 = ImageIO.read(new File("assets/duck1_right.png"));
         this.duckImg2 = ImageIO.read(new File("assets/duck2_right.png"));
         this.lilypadImg = ImageIO.read(new File("assets/lilypad.png"));
+
+    }
+
+    public static class Sound {
+        public static synchronized void play(final String fileName)
+        {
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        Clip clip = AudioSystem.getClip();
+                        AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(fileName));
+                        clip.open(inputStream);
+                        clip.start();
+                    } catch (Exception e) {
+                        System.out.println("play sound error: " + e.getMessage() + " for " + fileName);
+                    }
+                }
+            }).start();
+        }
     }
 
 
-    public void spawnDuck() {
+
+
+        public void spawnDuck() {
         int randx = ThreadLocalRandom.current().nextInt(0, 1280);
-        System.out.println(randx);
+        //System.out.println(randx);
         int randy = ThreadLocalRandom.current().nextInt(0, 800);
-        System.out.println(randy);
+        //System.out.println(randy);
         entities.add(new Duck(randx, randy));
+
+
 
     }
 
     public void spawnLilypad() {
         int randx = ThreadLocalRandom.current().nextInt(0, 1280);
-        System.out.println(randx);
+        //System.out.println(randx);
         int randy = ThreadLocalRandom.current().nextInt(0, 800);
-        System.out.println(randy);
+        //System.out.println(randy);
         entities.add(new Lilypad(randx, randy));
 
     }
 
     public void spawnRock() {
         int randx = ThreadLocalRandom.current().nextInt(0, 1280);
-        System.out.println(randx);
+        //System.out.println(randx);
         int randy = ThreadLocalRandom.current().nextInt(0, 800);
-        System.out.println(randy);
+        //System.out.println(randy);
         entities.add(new Rock (randx, randy));
 
     }
@@ -97,35 +124,31 @@ public class PondManager {
             Vector2D duckSize = duck.getSize();
             double rotation = duck.getRotation();
             double angle = Math.toRadians(rotation);
-            System.out.println(pos);
+            //System.out.println(pos);
 
             // pond borders
             double newRot = 0;
             boolean shouldUpdateRot = false;
             if (pos.x <= 0) {
                 Vector2D vec = MathUtils.reflect(new Vector2D(1, 0).rotate(-angle), new Vector2D(1, 0).rotate(Math.toRadians(180)));
-                System.out.println(duck.getRotation());
-                System.out.println(vec.getRotation());
                 newRot = vec.getRotation();
                 shouldUpdateRot = true;
+                Sound.play("assets/Honk1.wav");
             } else if (pos.x + duckSize.x >= width) {
                 Vector2D vec = MathUtils.reflect(new Vector2D(1, 0).rotate(-angle), new Vector2D(1, 0).rotate(Math.toRadians(0)));
-                System.out.println(duck.getRotation());
-                System.out.println(vec.getRotation());
+                Sound.play("assets/Honk1.wav");
                 newRot = vec.getRotation();
                 shouldUpdateRot = true;
             }
 
             if (pos.y <= 0) {
                 Vector2D vec = MathUtils.reflect(new Vector2D(1, 0).rotate(-angle), new Vector2D(1, 0).rotate(Math.toRadians(270)));
-                System.out.println(duck.getRotation());
-                System.out.println(vec.getRotation());
+                Sound.play("assets/Honk1.wav");
                 newRot = vec.getRotation();
                 shouldUpdateRot = true;
             } else if (pos.y + duckSize.y >= height) {
                 Vector2D vec = MathUtils.reflect(new Vector2D(1, 0).rotate(-angle), new Vector2D(1, 0).rotate(Math.toRadians(90)));
-                System.out.println(duck.getRotation());
-                System.out.println(vec.getRotation());
+                Sound.play("assets/Honk1.wav");
                 newRot = vec.getRotation();
                 shouldUpdateRot = true;
             }
@@ -134,7 +157,21 @@ public class PondManager {
                 duck.setRotation(Math.round(newRot));
             }
 
+
+            /*for (entity : entities) {
+                if (!(entity instanceof Lilypad)) continue;
+                Lilypad lilypad = (Lilypad) entity;
+                //Duck duck = (Duck)entity;
+                Vector2D posL = lilypad.getPosition();
+                Vector2D lilypadSize = lilypad.getSize();
+                System.out.println(posL);
+        }*/
+
+
+
         }
+
+
 
         if (nbDucks < 10) {
             spawnDuck();
@@ -153,27 +190,30 @@ public class PondManager {
     }
 
 
-    public void render(Graphics2D g) {
-        // entities.forEach(e -> e.render(g));
+        public void render(Graphics2D g) {
+            // entities.forEach(e -> e.render(g));
 
-        for (IPondEntity entity : entities) {
-            entity.render(g);
+            for (IPondEntity entity : entities) {
+                entity.render(g);
+            }
         }
-    }
 
-    public BufferedImage getRockImg() {
-        return rockImg;
-    }
+        public BufferedImage getRockImg() {
+            return rockImg;
+        }
 
-    public BufferedImage getDuckImg1() {
-        return duckImg1;
-    }
+        public BufferedImage getDuckImg1() {
+            return duckImg1;
+        }
 
-    public BufferedImage getDuckImg2() {
-        return duckImg2;
-    }
+        public BufferedImage getDuckImg2() {
+            return duckImg2;
+        }
 
-    public BufferedImage getLilypadImg() {
-        return lilypadImg;
-    }
+        public BufferedImage getLilypadImg() {
+            return lilypadImg;
+        }
+
+
 }
+

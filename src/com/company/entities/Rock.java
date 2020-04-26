@@ -17,8 +17,8 @@ public class Rock implements IPondEntity {
     public Rock(int x, int y) {
         this.x = x;
         this.y = y;
-        this.width = 70;
-        this.height = 70;
+        this.width = 110;
+        this.height = 110;
         //this.color = new Color(153, 150, 133);
     }
 

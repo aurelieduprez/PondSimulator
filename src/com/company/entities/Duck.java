@@ -43,6 +43,7 @@ public class Duck implements IPondEntity {
         Double translated = MathUtils.translate2D(this.x, this.y, this.rotation, getMoveSpeed(this.level));
         this.x = translated.x;
         this.y = translated.y;
+
     }
 
     public void levelUp() {
@@ -109,6 +110,7 @@ public class Duck implements IPondEntity {
 
     public double getRotation() {
         return this.rotation;
+
     }
 }
 
