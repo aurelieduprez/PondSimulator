@@ -69,7 +69,7 @@ public class PondManager {
                         System.out.println("play sound error: " + e.getMessage() + " for " + fileName);
                     }
                 }
-            }).start();
+            })/*.start()*/;
         }
     }
 

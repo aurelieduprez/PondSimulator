@@ -6,6 +6,7 @@ import com.company.tools.Vector2D;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
+import java.awt.Rectangle;
 
 public class Lilypad implements IPondEntity {
     private int x;
@@ -33,7 +34,15 @@ public class Lilypad implements IPondEntity {
         PondManager pm = PondManager.getSingleton();
         Image lilypadImg = null;
         lilypadImg = pm.getLilypadImg();
+        //Rectangle hitbox = g.getClipBounds(g);
+        //g.setColor(new Color(45, 100, 106));
+        //g.fill(new Rectangle(this.x, this.y, this.width, this.height));
+
         g.drawImage(lilypadImg, this.x, this.y, this.width, this.height, null);
+
+
+
+        //g.dispose();
 
         /*g.setColor(this.color);
         g.drawImage(lilypadImg, this.x, this.y, duckSize, duckSize, null);
