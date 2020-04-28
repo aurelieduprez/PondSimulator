@@ -34,7 +34,7 @@ public class Lilypad implements IPondEntity {
         PondManager pm = PondManager.getSingleton();
         Image lilypadImg = null;
         lilypadImg = pm.getLilypadImg();
-        //Rectangle hitbox = g.getClipBounds(g);
+
         //g.setColor(new Color(45, 100, 106));
         //g.fill(new Rectangle(this.x, this.y, this.width, this.height));
 

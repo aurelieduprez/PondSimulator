@@ -14,7 +14,7 @@ public class GamePanel extends JPanel implements ActionListener {
     private static int width = 1280;
     private static int height = 720;
 
-    private final int DELAY = 10;
+    private final int DELAY = 15;
 
     private PondManager pm;
 

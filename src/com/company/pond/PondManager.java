@@ -18,6 +18,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class PondManager {
@@ -70,6 +71,7 @@ public class PondManager {
                     }
                 }
             })/*.start()*/;
+
         }
     }
 
@@ -110,70 +112,122 @@ public class PondManager {
     private int nbRocks = 0;
     private int nbDucks = 0;
     public void update() {
-        //entities.forEach(IPondEntity::update);
         for (IPondEntity entity : entities) {
             entity.update();
         }
 
+        ArrayList<IPondEntity> toRemove = new ArrayList<>();
+
+
         // Collisions detection
+        int tolerance = 15;
         for (IPondEntity entity : entities) {
             if (!(entity instanceof Duck)) continue;
-            Duck duck = (Duck)entity;
+            Duck duck = (Duck) entity;
 
             Vector2D pos = duck.getPosition();
-            Vector2D duckSize = duck.getSize();
+            Vector2D size = duck.getSize();
             double rotation = duck.getRotation();
             double angle = Math.toRadians(rotation);
             //System.out.println(pos);
 
+            // Apply hitbox tolerance
+            pos.x += tolerance;
+            pos.y += tolerance;
+            size.x -= tolerance*2;
+            size.y -= tolerance*2;
+
             // pond borders
             double newRot = 0;
             boolean shouldUpdateRot = false;
-            if (pos.x <= 0) {
+            if (pos.x <= 0) { // LEFT
                 Vector2D vec = MathUtils.reflect(new Vector2D(1, 0).rotate(-angle), new Vector2D(1, 0).rotate(Math.toRadians(180)));
                 newRot = vec.getRotation();
                 shouldUpdateRot = true;
                 Sound.play("assets/Honk1.wav");
-            } else if (pos.x + duckSize.x >= width) {
+            } else if (pos.x + size.x >= width) {  // RIGHT
                 Vector2D vec = MathUtils.reflect(new Vector2D(1, 0).rotate(-angle), new Vector2D(1, 0).rotate(Math.toRadians(0)));
                 Sound.play("assets/Honk1.wav");
                 newRot = vec.getRotation();
                 shouldUpdateRot = true;
             }
 
-            if (pos.y <= 0) {
+            if (pos.y <= 0) { // TOP
                 Vector2D vec = MathUtils.reflect(new Vector2D(1, 0).rotate(-angle), new Vector2D(1, 0).rotate(Math.toRadians(270)));
                 Sound.play("assets/Honk1.wav");
                 newRot = vec.getRotation();
                 shouldUpdateRot = true;
-            } else if (pos.y + duckSize.y >= height) {
+            } else if (pos.y + size.y >= height) { // BOTTOM
                 Vector2D vec = MathUtils.reflect(new Vector2D(1, 0).rotate(-angle), new Vector2D(1, 0).rotate(Math.toRadians(90)));
                 Sound.play("assets/Honk1.wav");
                 newRot = vec.getRotation();
                 shouldUpdateRot = true;
             }
 
-            if (shouldUpdateRot) {
+            /*if (shouldUpdateRot) {
                 duck.setRotation(Math.round(newRot));
+            }*/
+
+
+            //stuff
+            for (IPondEntity entity2 : entities) {
+                if (entity2 == entity) continue;
+
+                boolean isColliding = false;
+                Vector2D pos2 = entity2.getPosition();
+                Vector2D size2 = entity2.getSize();
+
+                // Apply hitbox tolerance
+                if (entity2 instanceof Duck) {
+                    pos2.x += tolerance;
+                    pos2.y += tolerance;
+                    size2.x -= tolerance*2;
+                    size2.y -= tolerance*2;
+                }
+
+                if (pos.x + size.x > pos2.x &&
+                    pos.x < pos2.x + size2.x &&
+                    pos.y + size.y > pos2.y &&
+                    pos.y < pos2.y + size2.y) {
+
+                    System.out.println("hihi");
+                    isColliding = true;
+
+                }
+
+
+                if (entity2 instanceof Duck && isColliding) {
+
+                } else if (entity2 instanceof Lilypad && isColliding) {
+
+                    duck.levelUp();
+                    toRemove.add(entity2);
+                    //son
+
+                } else if (entity2 instanceof Rock && isColliding) {
+                    int angleNormal = 0;
+                    if (pos.x <= pos2.x) angleNormal = 0;
+                    else if (pos.x + size.x >= pos2.x + size2.x) angleNormal = 180;
+                    else if (pos.y <= pos2.y) angleNormal = 90;
+                    else if (pos.y + size2.y >= pos2.y + size2.y) angleNormal = 270;
+
+                    Vector2D vec = MathUtils.reflect(new Vector2D(1, 0).rotate(-angle), new Vector2D(1, 0).rotate(Math.toRadians(angleNormal)));
+                    newRot = vec.getRotation();
+                    shouldUpdateRot = true;
+                }
+
+            }//end 2nd for
+
+
+            if (shouldUpdateRot) {
+                duck.setRotation(Math.round(newRot), true);
             }
+        }//end 1st for
 
 
-            /*for (entity : entities) {
-                if (!(entity instanceof Lilypad)) continue;
-                Lilypad lilypad = (Lilypad) entity;
-                //Duck duck = (Duck)entity;
-                Vector2D posL = lilypad.getPosition();
-                Vector2D lilypadSize = lilypad.getSize();
-                System.out.println(posL);
-        }*/
+        entities.removeAll(toRemove);
 
-
-
-        }
-
-
-
-        if (nbDucks < 10) {
+        if (nbDucks < 1) {
             spawnDuck();
             nbDucks += 1;
         }
@@ -190,29 +244,46 @@ public class PondManager {
     }
 
 
-        public void render(Graphics2D g) {
-            // entities.forEach(e -> e.render(g));
+    public void render(Graphics2D g) {
+        // entities.forEach(e -> e.render(g));
 
-            for (IPondEntity entity : entities) {
-                entity.render(g);
+        for (IPondEntity entity : entities) {
+            entity.render(g);
+            // DEBUG HITBOX
+            int tolerance = 15;
+            Vector2D pos = entity.getPosition();
+            Vector2D size = entity.getSize();
+
+            if (entity instanceof Duck) {
+                g.setColor(Color.GREEN);
+                g.drawRect((int)pos.x, (int)pos.y, (int)size.x - 1, (int)size.y - 1);
+
+                pos.x += tolerance;
+                pos.y += tolerance;
+                size.x -= tolerance*2;
+                size.y -= tolerance*2;
             }
-        }
 
-        public BufferedImage getRockImg() {
-            return rockImg;
+            g.setColor(Color.RED);
+            g.drawRect((int)pos.x, (int)pos.y, (int)size.x - 1, (int)size.y - 1);
         }
+    }
 
-        public BufferedImage getDuckImg1() {
-            return duckImg1;
-        }
+    public BufferedImage getRockImg() {
+        return rockImg;
+    }
 
-        public BufferedImage getDuckImg2() {
-            return duckImg2;
-        }
+    public BufferedImage getDuckImg1() {
+        return duckImg1;
+    }
 
-        public BufferedImage getLilypadImg() {
-            return lilypadImg;
-        }
+    public BufferedImage getDuckImg2() {
+        return duckImg2;
+    }
+
+    public BufferedImage getLilypadImg() {
+        return lilypadImg;
+    }
 
 
 }

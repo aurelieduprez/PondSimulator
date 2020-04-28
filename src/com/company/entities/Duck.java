@@ -1,18 +1,12 @@
 package com.company.entities;
 
-import com.company.Window;
 import com.company.pond.PondManager;
-import com.company.GamePanel;
 import com.company.tools.GraphicUtils;
 import com.company.tools.MathUtils;
 import com.company.tools.Vector2D;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 public class Duck implements IPondEntity {
@@ -21,6 +15,9 @@ public class Duck implements IPondEntity {
     private int width;
     private int height;
     private double rotation;
+    private boolean justChangedRot;
+    private long lastChangedRot;
+
 
     private int level;
     private BufferedImage image;
@@ -28,7 +25,7 @@ public class Duck implements IPondEntity {
     public Duck(int x, int y) {
         this.x = x;
         this.y = y;
-        this.width = this.height = 110;
+        this.width = this.height = 50;
         this.level = 1;
         this.rotation = 45;
         this.image = PondManager.getSingleton().getDuckImg1();
@@ -37,7 +34,8 @@ public class Duck implements IPondEntity {
     @Override
     public void update() {
         this.forward();
-        levelUp();
+
+        //
     }
 
     public void forward() {
@@ -48,30 +46,24 @@ public class Duck implements IPondEntity {
     }
 
     public void levelUp() {
-        if (level <= 3) return;
+        if (level >= 10) return;
 
         level += 1;
 
-        if (level <= 5) { // Grown up to normal
-            this.width = this.height = 110;
-        } else if (level >= 10) { // Becomes chief
-            this.width = this.height = 110;
+        this.width = this.height += 5;
+
+        if (level == 10) { // Becomes chief
             this.image = PondManager.getSingleton().getDuckImg2();
         }
+        System.out.println(this.level);
     }
 
     int getMoveSpeed(int level) {
-        if (level <= 3){
+        if (level < 10){
             return 2;
-        }
-        else if (level <=10){
-            return 2;
-        }
-        else{
+        } else {
             return 1;
         }
-
-
     }
 
     @Override
@@ -106,8 +98,16 @@ public class Duck implements IPondEntity {
     }
 
     public void setRotation(double rot) {
+        setRotation(rot, false);
+    }
+
+    public void setRotation(double rot, boolean spamProtect) {
+        long nowTimeMilli = System.currentTimeMillis();
+        if (spamProtect && nowTimeMilli - this.lastChangedRot < 100) return;
+
         if (rot < 0) rot += 360;
         this.rotation = rot;
+        lastChangedRot = nowTimeMilli;
     }
 
     public double getRotation() {
