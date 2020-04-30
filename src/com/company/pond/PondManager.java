@@ -34,9 +34,6 @@ public class PondManager {
     private BufferedImage duckImg2;
     private BufferedImage lilypadImg;
 
-    // TODO: A supprimer
-    //boolean debugSpawned = false;
-
     private static PondManager _instance = null;
 
     private PondManager() {}
@@ -56,21 +53,21 @@ public class PondManager {
 
     }
 
-    public static class Sound {
+    public static class SoundAnimation {
         public static synchronized void play(final String fileName)
         {
             new Thread(new Runnable() {
                 public void run() {
                     try {
-                        Clip clip = AudioSystem.getClip();
+                        Clip sound = AudioSystem.getClip();
                         AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(fileName));
-                        clip.open(inputStream);
-                        clip.start();
+                        sound.open(inputStream);
+                        sound.start();
                     } catch (Exception e) {
-                        System.out.println("play sound error: " + e.getMessage() + " for " + fileName);
+                        System.out.println("SoundAnimation: error " + e.getMessage() + " for " + fileName);
                     }
                 }
-            })/*.start()*/;
+            }).start();
 
         }
     }
@@ -144,22 +141,18 @@ public class PondManager {
                 Vector2D vec = MathUtils.reflect(new Vector2D(1, 0).rotate(-angle), new Vector2D(1, 0).rotate(Math.toRadians(180)));
                 newRot = vec.getRotation();
                 shouldUpdateRot = true;
-                Sound.play("assets/Honk1.wav");
             } else if (pos.x + size.x >= width) {  // RIGHT
                 Vector2D vec = MathUtils.reflect(new Vector2D(1, 0).rotate(-angle), new Vector2D(1, 0).rotate(Math.toRadians(0)));
-                Sound.play("assets/Honk1.wav");
                 newRot = vec.getRotation();
                 shouldUpdateRot = true;
             }
 
             if (pos.y <= 0) { // TOP
                 Vector2D vec = MathUtils.reflect(new Vector2D(1, 0).rotate(-angle), new Vector2D(1, 0).rotate(Math.toRadians(270)));
-                Sound.play("assets/Honk1.wav");
                 newRot = vec.getRotation();
                 shouldUpdateRot = true;
             } else if (pos.y + size.y >= height) { // BOTTOM
                 Vector2D vec = MathUtils.reflect(new Vector2D(1, 0).rotate(-angle), new Vector2D(1, 0).rotate(Math.toRadians(90)));
-                Sound.play("assets/Honk1.wav");
                 newRot = vec.getRotation();
                 shouldUpdateRot = true;
             }
@@ -189,10 +182,7 @@ public class PondManager {
                     pos.x < pos2.x + size2.x &&
                     pos.y + size.y > pos2.y &&
                     pos.y < pos2.y + size2.y) {
-
-                    System.out.println("hihi");
                     isColliding = true;
-
                 }
 
 
@@ -201,6 +191,7 @@ public class PondManager {
                 } else if (entity2 instanceof Lilypad && isColliding) {
 
                     duck.levelUp();
+                    Sound.play("assets/Honk.wav");
                     toRemove.add(entity2);
                     //son
 
@@ -227,7 +218,7 @@ public class PondManager {
 
         entities.removeAll(toRemove);
 
-        if (nbDucks < 1) {
+        if (nbDucks < 10) {
             spawnDuck();
             nbDucks += 1;
         }
@@ -255,8 +246,8 @@ public class PondManager {
             Vector2D size = entity.getSize();
 
             if (entity instanceof Duck) {
-                g.setColor(Color.GREEN);
-                g.drawRect((int)pos.x, (int)pos.y, (int)size.x - 1, (int)size.y - 1);
+                //g.setColor(Color.GREEN);
+                //g.drawRect((int)pos.x, (int)pos.y, (int)size.x - 1, (int)size.y - 1);
 
                 pos.x += tolerance;
                 pos.y += tolerance;
@@ -264,8 +255,8 @@ public class PondManager {
                 size.y -= tolerance*2;
             }
 
-            g.setColor(Color.RED);
-            g.drawRect((int)pos.x, (int)pos.y, (int)size.x - 1, (int)size.y - 1);
+            //g.setColor(Color.RED);
+            //g.drawRect((int)pos.x, (int)pos.y, (int)size.x - 1, (int)size.y - 1);
         }
     }
 
