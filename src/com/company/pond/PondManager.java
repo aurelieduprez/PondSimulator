@@ -25,6 +25,7 @@ public class PondManager {
 
 
     private ArrayList<IPondEntity> entities = new ArrayList<>();
+    private int gotRemoved = 0;
 
     private int height = GamePanel.getWindowHeight();
     private int width = GamePanel.getWindowWidth();
@@ -73,33 +74,22 @@ public class PondManager {
     }
 
 
-
-
         public void spawnDuck() {
         int randx = ThreadLocalRandom.current().nextInt(0, 1280);
-        //System.out.println(randx);
         int randy = ThreadLocalRandom.current().nextInt(0, 800);
-        //System.out.println(randy);
         entities.add(new Duck(randx, randy));
-
-
-
     }
 
     public void spawnLilypad() {
         int randx = ThreadLocalRandom.current().nextInt(0, 1280);
-        //System.out.println(randx);
         int randy = ThreadLocalRandom.current().nextInt(0, 800);
-        //System.out.println(randy);
         entities.add(new Lilypad(randx, randy));
 
     }
 
     public void spawnRock() {
         int randx = ThreadLocalRandom.current().nextInt(0, 1280);
-        //System.out.println(randx);
         int randy = ThreadLocalRandom.current().nextInt(0, 800);
-        //System.out.println(randy);
         entities.add(new Rock (randx, randy));
 
     }
@@ -121,12 +111,11 @@ public class PondManager {
         for (IPondEntity entity : entities) {
             if (!(entity instanceof Duck)) continue;
             Duck duck = (Duck) entity;
-
             Vector2D pos = duck.getPosition();
             Vector2D size = duck.getSize();
             double rotation = duck.getRotation();
             double angle = Math.toRadians(rotation);
-            //System.out.println(pos);
+
 
             // Apply hitbox tolerance
             pos.x += tolerance;
@@ -157,15 +146,10 @@ public class PondManager {
                 shouldUpdateRot = true;
             }
 
-            /*if (shouldUpdateRot) {
-                duck.setRotation(Math.round(newRot));
-            }*/
-
 
             //stuff
             for (IPondEntity entity2 : entities) {
                 if (entity2 == entity) continue;
-
                 boolean isColliding = false;
                 Vector2D pos2 = entity2.getPosition();
                 Vector2D size2 = entity2.getSize();
@@ -176,7 +160,12 @@ public class PondManager {
                     pos2.y += tolerance;
                     size2.x -= tolerance*2;
                     size2.y -= tolerance*2;
+                    if (((Duck) entity2).remainingTime < 0) {
+                        toRemove.add(entity2);
+                    }
                 }
+
+
 
                 if (pos.x + size.x > pos2.x &&
                     pos.x < pos2.x + size2.x &&
@@ -188,12 +177,15 @@ public class PondManager {
 
                 if (entity2 instanceof Duck && isColliding) {
 
+
                 } else if (entity2 instanceof Lilypad && isColliding) {
 
                     duck.levelUp();
-                    Sound.play("assets/Honk.wav");
+                    SoundAnimation.play("assets/Honk.wav");
                     toRemove.add(entity2);
-                    //son
+                    nbLilypads -=1;
+                    duck.remainingTime += 200;
+
 
                 } else if (entity2 instanceof Rock && isColliding) {
                     int angleNormal = 0;
@@ -226,7 +218,7 @@ public class PondManager {
             spawnRock();
             nbRocks += 1;
         }
-        if (nbLilypads <= 25) {
+        if (nbLilypads <= 15) {
             spawnLilypad();
             nbLilypads += 1;
         }

@@ -17,8 +17,7 @@ public class Duck implements IPondEntity {
     private double rotation;
     private boolean justChangedRot;
     private long lastChangedRot;
-
-
+    public int remainingTime;
     private int level;
     private BufferedImage image;
 
@@ -29,13 +28,13 @@ public class Duck implements IPondEntity {
         this.level = 1;
         this.rotation = 45;
         this.image = PondManager.getSingleton().getDuckImg1();
+        this.remainingTime = 1000;
     }
 
     @Override
     public void update() {
         this.forward();
-
-        //
+        this.remainingTime -=1;
     }
 
     public void forward() {
@@ -55,7 +54,6 @@ public class Duck implements IPondEntity {
         if (level == 10) { // Becomes chief
             this.image = PondManager.getSingleton().getDuckImg2();
         }
-        System.out.println(this.level);
     }
 
     int getMoveSpeed(int level) {
@@ -114,5 +112,6 @@ public class Duck implements IPondEntity {
         return this.rotation;
 
     }
+
 }
 

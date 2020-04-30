@@ -49,6 +49,7 @@ public class GamePanel extends JPanel implements ActionListener {
         } catch (IOException e) {
             System.out.println("[ERROR] Failed to load game assets !");
             e.printStackTrace();
+
         }
     }
 
