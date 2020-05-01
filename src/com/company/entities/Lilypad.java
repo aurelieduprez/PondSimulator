@@ -13,14 +13,12 @@ public class Lilypad implements IPondEntity {
     private int y;
     private int width;
     private int height;
-    private Color color;
 
     public Lilypad(int x, int y) {
         this.x = x;
         this.y = y;
         this.width = 70;
         this.height = 70;
-        this.color = new Color(51,153,0);
     }
 
     @Override
@@ -34,21 +32,8 @@ public class Lilypad implements IPondEntity {
         PondManager pm = PondManager.getSingleton();
         Image lilypadImg = null;
         lilypadImg = pm.getLilypadImg();
-
-        //g.setColor(new Color(45, 100, 106));
-        //g.fill(new Rectangle(this.x, this.y, this.width, this.height));
-
         g.drawImage(lilypadImg, this.x, this.y, this.width, this.height, null);
 
-
-
-        //g.dispose();
-
-        /*g.setColor(this.color);
-        g.drawImage(lilypadImg, this.x, this.y, duckSize, duckSize, null);
-        Ellipse2D.Double circle = new Ellipse2D.Double(x, y, 50, 50);
-        g.fill(circle); //lily pad = rond coloré
-        g.draw(circle);*/
     }
 
     @Override

@@ -19,14 +19,12 @@ public class Rock implements IPondEntity {
         this.y = y;
         this.width = 110;
         this.height = 110;
-        //this.color = new Color(153, 150, 133);
     }
 
 
 
     @Override
     public void update() {
-        // NOTHING It's a rock !
     }
 
     @Override

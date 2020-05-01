@@ -25,7 +25,6 @@ public class PondManager {
 
 
     private ArrayList<IPondEntity> entities = new ArrayList<>();
-    private int gotRemoved = 0;
 
     private int height = GamePanel.getWindowHeight();
     private int width = GamePanel.getWindowWidth();
@@ -105,7 +104,6 @@ public class PondManager {
 
         ArrayList<IPondEntity> toRemove = new ArrayList<>();
 
-
         // Collisions detection
         int tolerance = 15;
         for (IPondEntity entity : entities) {
@@ -115,7 +113,6 @@ public class PondManager {
             Vector2D size = duck.getSize();
             double rotation = duck.getRotation();
             double angle = Math.toRadians(rotation);
-
 
             // Apply hitbox tolerance
             pos.x += tolerance;
@@ -147,7 +144,7 @@ public class PondManager {
             }
 
 
-            //stuff
+            //other entities
             for (IPondEntity entity2 : entities) {
                 if (entity2 == entity) continue;
                 boolean isColliding = false;
@@ -166,7 +163,6 @@ public class PondManager {
                 }
 
 
-
                 if (pos.x + size.x > pos2.x &&
                     pos.x < pos2.x + size2.x &&
                     pos.y + size.y > pos2.y &&
@@ -175,10 +171,7 @@ public class PondManager {
                 }
 
 
-                if (entity2 instanceof Duck && isColliding) {
-
-
-                } else if (entity2 instanceof Lilypad && isColliding) {
+                if (entity2 instanceof Lilypad && isColliding) {
 
                     duck.levelUp();
                     SoundAnimation.play("assets/Honk.wav");
@@ -232,23 +225,17 @@ public class PondManager {
 
         for (IPondEntity entity : entities) {
             entity.render(g);
-            // DEBUG HITBOX
             int tolerance = 15;
             Vector2D pos = entity.getPosition();
             Vector2D size = entity.getSize();
 
             if (entity instanceof Duck) {
-                //g.setColor(Color.GREEN);
-                //g.drawRect((int)pos.x, (int)pos.y, (int)size.x - 1, (int)size.y - 1);
-
                 pos.x += tolerance;
                 pos.y += tolerance;
                 size.x -= tolerance*2;
                 size.y -= tolerance*2;
             }
 
-            //g.setColor(Color.RED);
-            //g.drawRect((int)pos.x, (int)pos.y, (int)size.x - 1, (int)size.y - 1);
         }
     }
 

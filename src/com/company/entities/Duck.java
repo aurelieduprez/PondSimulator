@@ -10,18 +10,18 @@ import java.awt.geom.Point2D.Double;
 import java.awt.image.BufferedImage;
 
 public class Duck implements IPondEntity {
-    private double x;
-    private double y;
-    private int width;
-    private int height;
-    private double rotation;
-    private boolean justChangedRot;
-    private long lastChangedRot;
-    public int remainingTime;
-    private int level;
-    private BufferedImage image;
+    private double x;   //position en x
+    private double y;   // position en y
+    private int width;  //largeur
+    private int height; //hauteur
+    private double rotation; //rotation en radians
+    private boolean justChangedRot; //booléen
+    private long lastChangedRot;    //booléen
+    public int remainingTime;   //temps de vie
+    private int level;      //niveau du canard
+    private BufferedImage image;    //image associée
 
-    public Duck(int x, int y) {
+    public Duck(int x, int y) { //nouvelle instance Duck en x, y; avec les caractéristiques suivantes
         this.x = x;
         this.y = y;
         this.width = this.height = 50;
@@ -32,19 +32,19 @@ public class Duck implements IPondEntity {
     }
 
     @Override
-    public void update() {
+    public void update() { //fonction décrite par l'interface
         this.forward();
         this.remainingTime -=1;
     }
 
-    public void forward() {
+    public void forward() {     //déplacement selon position, angle et vitesse données
         Double translated = MathUtils.translate2D(this.x, this.y, this.rotation, getMoveSpeed(this.level));
         this.x = translated.x;
         this.y = translated.y;
 
     }
 
-    public void levelUp() {
+    public void levelUp() { //augmentation du niveau
         if (level >= 10) return;
 
         level += 1;
@@ -56,7 +56,7 @@ public class Duck implements IPondEntity {
         }
     }
 
-    int getMoveSpeed(int level) {
+    int getMoveSpeed(int level) {   //vitesse selon niveau du canard
         if (level < 10){
             return 2;
         } else {
@@ -65,19 +65,19 @@ public class Duck implements IPondEntity {
     }
 
     @Override
-    public void render(Graphics2D g) {
+    public void render(Graphics2D g) {      //rendu graphique du canard en cours
         PondManager pm = PondManager.getSingleton();
         BufferedImage duckImg = null;
         Color color;
-        if (level <= 3) { // baby duck
+        if (level <= 3) { // bébé canard
             color = new Color(255,255,0);
             duckImg = pm.getDuckImg1();
         }
-        else if (level < 10) { // pretty duck
+        else if (level < 10) { // canard
             color = new Color(255,255,0);
             duckImg = pm.getDuckImg1();
         }
-        else { // king of the ducks
+        else { // chef de la tribu des canards
             color = new Color(220,220,220);
             duckImg = pm.getDuckImg2();
         }
@@ -86,20 +86,20 @@ public class Duck implements IPondEntity {
     }
 
     @Override
-    public Vector2D getPosition() {
+    public Vector2D getPosition() { //getter sur la position du canard, return un vector2D
         return new Vector2D(this.x, this.y);
     }
 
     @Override
-    public Vector2D getSize() {
+    public Vector2D getSize() {     //getter de dimensions, return un vector2D
         return new Vector2D(this.width, this.height);
     }
 
-    public void setRotation(double rot) {
+    public void setRotation(double rot) {   //défini la prochaine rotation, spam protect pour éviter les glitch
         setRotation(rot, false);
     }
 
-    public void setRotation(double rot, boolean spamProtect) {
+    public void setRotation(double rot, boolean spamProtect) {  //calcule le temp de la dernière rotation, afin de limiter les glitch
         long nowTimeMilli = System.currentTimeMillis();
         if (spamProtect && nowTimeMilli - this.lastChangedRot < 100) return;
 
@@ -108,7 +108,7 @@ public class Duck implements IPondEntity {
         lastChangedRot = nowTimeMilli;
     }
 
-    public double getRotation() {
+    public double getRotation() { //getter de la prochaine rotation
         return this.rotation;
 
     }
